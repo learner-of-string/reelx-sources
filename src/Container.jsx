@@ -11,6 +11,7 @@ const Container = () => {
     JSON.parse(localStorage.getItem(browserLocalStorage)) || []
   );
   const [filterType, setFilterType] = useState("all");
+  const [searchMovie, setSearchMovie] = useState("");
 
   const addMovie = ({ title, ott, url }) => {
     const newMovie = {
@@ -55,23 +56,25 @@ const Container = () => {
   });
 
   return (
-    <div className="m-10 flex flex-col justify-center items-center">
+    <div className="m-10 mb-0 flex flex-col justify-center items-center min-h-screen">
       <Header></Header>
-      <MovieForm addMovie={addMovie}></MovieForm>
+      <MovieForm addMovie={addMovie} onSearchMovie={setSearchMovie}></MovieForm>
       <Filter setFilterType={setFilterType}></Filter>
       <MovieList
         movies={filteredMovie}
         rateMovie={rateMovie}
         toggleWatched={toggleWatched}
         deleteMovie={deleteMovie}
+        searchMovie={searchMovie}
       ></MovieList>
-      <footer className="absolute bottom-10">
+      <footer className="mt-auto text-center w-full bg-[#1c1f26] p-5 sticky bottom-0">
         <a
           href="https://github.com/learner-of-string/reelx-sources.git"
-          className=""
+          target="_blank"
+          className="text-blue-400"
         >
           Source Code:
-          <span className="text-blue-400 font-semibold p-1 border-2 rounded-lg ml-1.5">
+          <span className="font-semibold p-1 border-2 rounded-lg ml-1.5">
             ReelX
           </span>
         </a>

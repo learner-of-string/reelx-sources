@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-const MovieForm = ({ addMovie }) => {
+const MovieForm = ({ addMovie, onSearchMovie }) => {
   const [movieData, setMovieData] = useState({
     title: "",
     ott: "",
@@ -12,17 +12,24 @@ const MovieForm = ({ addMovie }) => {
     const key = event.target.name;
     const value = event.target.value;
     // console.log(key, value);
+    onSearchMovie(value);
 
     setMovieData({ ...movieData, [key]: value });
   };
 
   //   addMovie(movieData); //moved to line:23
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (/* event */) => {
+    // event.preventDefault();
+    // I disabled this to refresh the page on submit the form cz the movieItem component is not showing after submit the form but after reload it come again as I stored them into the local storage of browser. I know it is not the proper way to solve this problem and I did a very bad practice. If anyone(obviously beginner in react) want to solve it, you can do cz it's open source.
     // console.log(movieData);
     addMovie(movieData);
     setMovieData({ ...movieData, title: "", ott: "", url: "" });
+  };
+
+  const handleMovieTitle = (event) => {
+    handleChange(event);
+    onSearchMovie(event.target.value);
   };
 
   return (
@@ -33,23 +40,23 @@ const MovieForm = ({ addMovie }) => {
           placeholder="Enter movie name"
           name="title"
           value={movieData?.title}
-          onChange={handleChange}
+          onChange={handleMovieTitle}
           className="input input-bordered w-full max-w-xs"
           required
         />
         <select name="ott" className="select" onChange={handleChange} required>
-          <option value="">Select an OTT</option>
+          <option value="default">Select an OTT</option>
           <option value="netflix">NetFlix</option>
           <option value="hoichoi">Hoichoi</option>
           <option value="youtube">YouTube😒</option>
           <option value="hotstar">Hotstar</option>
-          <option value="toffie">Toffie</option>
+          <option value="toffee">Toffee</option>
           <option value="kukutv">KuKuTV</option>
           <option value="others">Others</option>
         </select>
         <input
           type="text"
-          placeholder="URL should starts with https://"
+          placeholder="Enter movie URL"
           name="url"
           value={movieData?.url}
           onChange={handleChange}
@@ -64,6 +71,8 @@ const MovieForm = ({ addMovie }) => {
 
 MovieForm.propTypes = {
   addMovie: PropTypes.func.isRequired,
+  onSearchMovie: PropTypes.func.isRequired,
+  searchMovie: PropTypes.string.isRequired,
 };
 
 export default MovieForm;

@@ -16,7 +16,7 @@ const MovieItem = ({ movie, rateMovie, toggleWatched, deleteMovie }) => {
   };
 
   return (
-    <div className="my-10 p-8 border rounded-lg">
+    <div className="flex my-10 p-8 border rounded-lg">
       <li>
         <div className="flex gap-1.5 items-center ">
           <span
