@@ -34,7 +34,7 @@ const MovieForm = ({ addMovie, onSearchMovie }) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="flex gap-2">
+      <form onSubmit={handleSubmit} className="flex gap-2 flex-col lg:flex-row">
         <input
           type="text"
           placeholder="Enter movie name"

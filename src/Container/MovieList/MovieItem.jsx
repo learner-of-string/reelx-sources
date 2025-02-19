@@ -35,24 +35,26 @@ const MovieItem = ({ movie, rateMovie, toggleWatched, deleteMovie }) => {
               color2="#FFD700"
             ></ReactStars>
           </div>
-          <button
-            className="btn btn-accent"
-            onClick={() => toggleWatched(movie.id)}
-          >
-            {movie.watched ? (
-              "Unwatch"
-            ) : (
-              <a href={fixUrl(movie.url)} target="_blank">
-                Watch
-              </a>
-            )}
-          </button>
-          <button
-            className="btn btn-secondary"
-            onClick={() => deleteMovie(movie.id)}
-          >
-            Remove
-          </button>
+          <div className="space-y-2">
+            <button
+              className="btn btn-accent btn-wide"
+              onClick={() => toggleWatched(movie.id)}
+            >
+              {movie.watched ? (
+                "Unwatch"
+              ) : (
+                <a href={fixUrl(movie.url)} target="_blank">
+                  Watch
+                </a>
+              )}
+            </button>
+            <button
+              className="btn btn-secondary btn-wide"
+              onClick={() => deleteMovie(movie.id)}
+            >
+              Remove
+            </button>
+          </div>
         </div>
       </li>
     </div>
