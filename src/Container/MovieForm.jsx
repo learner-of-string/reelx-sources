@@ -5,6 +5,7 @@ const MovieForm = ({ addMovie }) => {
   const [movieData, setMovieData] = useState({
     title: "",
     ott: "",
+    url: "",
   });
 
   const handleChange = (event) => {
@@ -21,7 +22,7 @@ const MovieForm = ({ addMovie }) => {
     event.preventDefault();
     // console.log(movieData);
     addMovie(movieData);
-    setMovieData({ ...movieData, title: "", ott: "" });
+    setMovieData({ ...movieData, title: "", ott: "", url: "" });
   };
 
   return (
@@ -34,8 +35,9 @@ const MovieForm = ({ addMovie }) => {
           value={movieData?.title}
           onChange={handleChange}
           className="input input-bordered w-full max-w-xs"
+          required
         />
-        <select name="ott" className="select" onChange={handleChange}>
+        <select name="ott" className="select" onChange={handleChange} required>
           <option value="">Select an OTT</option>
           <option value="netflix">NetFlix</option>
           <option value="hoichoi">Hoichoi</option>
@@ -45,6 +47,15 @@ const MovieForm = ({ addMovie }) => {
           <option value="kukutv">KuKuTV</option>
           <option value="others">Others</option>
         </select>
+        <input
+          type="text"
+          placeholder="URL should starts with https://"
+          name="url"
+          value={movieData?.url}
+          onChange={handleChange}
+          className="input input-bordered w-full max-w-xs"
+          required
+        />
         <button className="btn btn-outline btn-primary">Add</button>
       </form>
     </div>

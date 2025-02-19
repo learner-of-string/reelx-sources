@@ -6,6 +6,15 @@ const MovieItem = ({ movie, rateMovie, toggleWatched, deleteMovie }) => {
     rateMovie(movie.id, newRating);
   };
 
+  const fixUrl = (url) => {
+    const hasProtocol = /^https?:\/\//.test(url);
+
+    if (!hasProtocol) {
+      return `https://${url}`;
+    }
+    return url;
+  };
+
   return (
     <div className="my-10 p-8 border rounded-lg">
       <li>
@@ -30,7 +39,13 @@ const MovieItem = ({ movie, rateMovie, toggleWatched, deleteMovie }) => {
             className="btn btn-accent"
             onClick={() => toggleWatched(movie.id)}
           >
-            {movie.watched ? "Unwatch" : "Watch"}
+            {movie.watched ? (
+              "Unwatch"
+            ) : (
+              <a href={fixUrl(movie.url)} target="_blank">
+                Watch
+              </a>
+            )}
           </button>
           <button
             className="btn btn-secondary"
@@ -50,6 +65,7 @@ MovieItem.propTypes = {
     title: PropTypes.string.isRequired,
     ott: PropTypes.string.isRequired,
     rating: PropTypes.number,
+    url: PropTypes.string.isRequired,
     watched: PropTypes.bool.isRequired,
   }).isRequired,
   rateMovie: PropTypes.func.isRequired,

@@ -12,11 +12,12 @@ const Container = () => {
   );
   const [filterType, setFilterType] = useState("all");
 
-  const addMovie = ({ title, ott }) => {
+  const addMovie = ({ title, ott, url }) => {
     const newMovie = {
       id: crypto.randomUUID(),
       title,
       ott,
+      url,
       rating: null,
       watched: false,
     };
@@ -64,13 +65,13 @@ const Container = () => {
         toggleWatched={toggleWatched}
         deleteMovie={deleteMovie}
       ></MovieList>
-      <footer>
+      <footer className="absolute bottom-10">
         <a
           href="https://github.com/learner-of-string/reelx-sources.git"
           className=""
         >
           Source Code:
-          <span className="text-blue-400 font-semibold p-1 border-2 rounded-lg">
+          <span className="text-blue-400 font-semibold p-1 border-2 rounded-lg ml-1.5">
             ReelX
           </span>
         </a>
