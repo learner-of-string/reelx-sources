@@ -65,8 +65,11 @@ const Container = () => {
         deleteMovie={deleteMovie}
       ></MovieList>
       <footer>
-        <a href="#" className="">
-          Source Code:{" "}
+        <a
+          href="https://github.com/learner-of-string/reelx-sources.git"
+          className=""
+        >
+          Source Code:
           <span className="text-blue-400 font-semibold p-1 border-2 rounded-lg">
             ReelX
           </span>
